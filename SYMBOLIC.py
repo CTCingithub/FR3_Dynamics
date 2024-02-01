@@ -1,5 +1,5 @@
 import sympy as p
-
+import os
 
 def Translation_4x4(Displacement):
     # Calculate Transformation Matrix in translation cases
@@ -99,3 +99,14 @@ def AdjointInverseMatrix(TransMatrix):
             (-R.T @ Vector2Matrix_3x3(P)).row_join(R.T)
         )
     )
+
+
+def MatlabCode(Matrix):
+    # Generate Matlab code of matrixes
+    Code = ""
+    Mat = p.simplify(Matrix)
+    for i in range(Mat.shape[0]):
+        for j in range(Mat.shape[1]):
+            Code = f"{Code},{p.octave_code(Mat[i, j])}"
+        Code = f"{Code};"
+    return f"[{Code[1:-1]}]"

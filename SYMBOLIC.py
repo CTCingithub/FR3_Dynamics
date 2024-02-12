@@ -1,5 +1,5 @@
 import sympy as p
-import os
+
 
 def Translation_4x4(Displacement):
     # Calculate Transformation Matrix in translation cases
@@ -107,6 +107,9 @@ def MatlabCode(Matrix):
     Mat = p.simplify(Matrix)
     for i in range(Mat.shape[0]):
         for j in range(Mat.shape[1]):
-            Code = f"{Code},{p.octave_code(Mat[i, j])}"
-        Code = f"{Code};"
-    return f"[{Code[1:-1]}]"
+            if j == 0:
+                Code = f"{Code} {p.octave_code(Mat[i, j])}"
+            else:
+                Code = f"{Code}, {p.octave_code(Mat[i, j])}"
+        Code = f"{Code}\n   " if i == Mat.shape[0]-1 else f"{Code};\n   "
+    return f"[\n    {Code[1:-2]}   ]"

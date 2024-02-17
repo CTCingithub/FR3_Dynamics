@@ -313,11 +313,6 @@
     <parent link="fr3_link7"/>
     <child link="fr3_link8"/>
   </joint>
-  <joint name="fr3_hand_joint" type="fixed">
-    <parent link="fr3_link8"/>
-    <child link="fr3_hand"/>
-    <origin rpy="0 0 -0.7853981633974483" xyz="0 0 0"/>
-  </joint>
   <!-- Define additional Gazebo tags -->
 </robot>
 
